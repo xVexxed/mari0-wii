@@ -1,2 +1,2 @@
 # mari0
-Runs on LÖVE 11.1
+Runs on LÖVE 0.10.2
