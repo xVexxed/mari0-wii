@@ -865,7 +865,7 @@ function saveconfig()
 		s = s .. "playercolors:" .. i .. ":"
 		for j = 1, 3 do
 			for k = 1, 3 do
-				s = s .. round(mariocolors[i][j][k], 4)
+				s = s .. mariocolors[i][j][k]
 				if j == 3 and k == 3 then
 					s = s .. ";"
 				else
@@ -909,7 +909,9 @@ function saveconfig()
 
 	s = s .. "mappack:" .. mappack .. ";"
 
-	s = s .. "vsync:" .. vsync .. ";"
+	if vsync then
+		s = s .. "vsync;"
+	end
 
 	if gamefinished then
 		s = s .. "gamefinished;"
@@ -961,8 +963,6 @@ function loadconfig()
 				for k = 2, #s4 do
 					if tonumber(s4[k]) ~= nil then
 						controls[tonumber(s2[2])][s4[1]][k-1] = tonumber(s4[k])
-					elseif s4[k] == " " then
-						controls[tonumber(s2[2])][s4[1]][k-1] = "space" -- migrate pre 0.10.2 config
 					else
 						controls[tonumber(s2[2])][s4[1]][k-1] = s4[k]
 					end
@@ -975,23 +975,18 @@ function loadconfig()
 				mariocolors[tonumber(s2[2])] = {}
 			end
 			s3 = s2[3]:split(",")
-			-- migrate pre 11.0 config
+<<<<<<< HEAD
+			mariocolors[tonumber(s2[2])] = {{tonumber(s3[1]), tonumber(s3[2]), tonumber(s3[3])}, {tonumber(s3[4]), tonumber(s3[5]), tonumber(s3[6])}, {tonumber(s3[7]), tonumber(s3[8]), tonumber(s3[9])}}
+=======
 			local s4 = {}
-			local migrate = false;
 			for j = 1, #s3 do
-				if tonumber(s3[j]) > 1 then
-					migrate = true
-					break
-				end
-			end
-			for j = 1, #s3 do
-				if migrate then
-					s4[j] = tonumber(s3[j]) / 255
-				else
-					s4[j] = tonumber(s3[j])
+				s4[j] = tonumber(s3[j])
+				if s4[j] > 1 then
+					s4[j] = s4[j] / 255  -- migrate pre 11.0 config
 				end
 			end
 			mariocolors[tonumber(s2[2])] = {{s4[1], s4[2], s4[3]}, {s4[4], s4[5], s4[6]}, {s4[7], s4[8], s4[9]}}
+>>>>>>> parent of 19ef11e (fix: handle color conversion edge case)
 
 		elseif s2[1] == "portalhues" then
 			if portalhues[tonumber(s2[2])] == nil then
@@ -1044,11 +1039,7 @@ function loadconfig()
 		elseif s2[1] == "gamefinished" then
 			gamefinished = true
 		elseif s2[1] == "vsync" then
-			if #s2 > 1 then
-				vsync = tonumber(s2[2])
-			else
-				vsync = -1
-			end
+			vsync = true
 		elseif s2[1] == "reachedworlds" then
 			reachedworlds[s2[2]] = {}
 			local s3 = s2[3]:split(",")
@@ -1158,7 +1149,7 @@ function defaultconfig()
 	scale = 2
 	volume = 1
 	mappack = "smb"
-	vsync = -1
+	vsync = true
 
 	reachedworlds = {}
 end

@@ -970,12 +970,10 @@ function menu_draw()
 			end
 
 			properprint("vsync:", 30*scale, 150*scale)
-			if vsync == 1 then
+			if vsync then
 				properprint("on", (180-16)*scale, 150*scale)
-			elseif vsync == 0 then
-				properprint("off", (180-24)*scale, 150*scale)
 			else
-				properprint("adaptive", (180-64)*scale, 150*scale)
+				properprint("off", (180-24)*scale, 150*scale)
 			end
 
 			love.graphics.setColor(0.4, 0.4, 0.4)
@@ -1859,7 +1857,7 @@ function menu_keypressed(key, unicode)
 						soundenabled = true
 					end
 				elseif optionsselection == 8 then
-					vsync = ((vsync + 2) % 3) - 1
+					vsync = not vsync
 					changescale(scale)
 				end
 			elseif optionstab == 4 then
@@ -1963,7 +1961,7 @@ function menu_keypressed(key, unicode)
 						playsound(coinsound)
 					end
 				elseif optionsselection == 8 then
-					vsync = (vsync % 3) - 1
+					vsync = not vsync
 					changescale(scale)
 				end
 			elseif optionstab == 4 then
