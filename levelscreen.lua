@@ -85,10 +85,14 @@ end
 function levelscreen_update(dt)
 	levelscreentimer = levelscreentimer + dt
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if levelscreentimer > blacktime then
 =======
 	if (levelscreentimer-blacktime) > -0.000000000000001 then -- epsilon ensures that the delay is consistent
 >>>>>>> parent of 5091fb2 (move epsilon to variables.lua)
+=======
+	if levelscreentimer > blacktime then
+>>>>>>> parent of ba2d7be (make level load frame-consistent)
 		if gamestate == "levelscreen" then
 			gamestate = "game"
 			if respawnsublevel ~= 0 then
