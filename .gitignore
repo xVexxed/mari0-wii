@@ -1,5 +1,7 @@
 .DS_Store
 ._.*
 Thumbs.db
+<<<<<<< HEAD
+=======
 makelove-build/
-/.vscode/
+>>>>>>> parent of 0e65776 (chore: gitignore)
