@@ -2887,10 +2887,14 @@ function shootportal(plnumber, i, sourcex, sourcey, direction)
 	end
 	--portalgun delay
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if portaldelay[plnumber] > 0 then
 =======
 	if portaldelay[plnumber] > 0.000000000000001 then -- epsilon ensures that the delay is consistent
 >>>>>>> parent of 5091fb2 (move epsilon to variables.lua)
+=======
+	if portaldelay[plnumber] > 0 then
+>>>>>>> parent of faf906e (make portal delay frame-consistent)
 		return
 	else
 		portaldelay[plnumber] = portalgundelay
