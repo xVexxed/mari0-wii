@@ -3886,6 +3886,9 @@ end
 function checkkey(s)
 	if s[1] == "joy" then
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 4d6cd0c (joystick support)
 		local jss = love.joystick.getJoysticks()
 		local js = jss[s[2]]
 
@@ -3893,12 +3896,17 @@ function checkkey(s)
 			return
 		end
 
+<<<<<<< HEAD
 		if s[3] == "hat" then
 			if js:getHat(s[4]) == s[5] then
 =======
 		if s[3] == "hat" then
 			if joysticks[s[2]]:getHat(s[4]) == s[5] then
 >>>>>>> parent of c817b67 (fix multiplayer crash if no controllers are connected)
+=======
+		if s[3] == "hat" then
+			if js:getHat(s[4]) == s[5] then
+>>>>>>> parent of 4d6cd0c (joystick support)
 				return true
 			else
 				return false

@@ -1028,10 +1028,14 @@ function mario:updateangle()
 		local s = controls[self.playernumber]["aimx"]
 		if s[1] == "joy" then
 <<<<<<< HEAD
+<<<<<<< HEAD
 			x = -love.joystick.getAxis(s[2], s[4])
 =======
 			x = -joysticks[s[2]]:getAxis(s[4])
 >>>>>>> parent of c817b67 (fix multiplayer crash if no controllers are connected)
+=======
+			x = -love.joystick.getAxis(s[2], s[4])
+>>>>>>> parent of 4d6cd0c (joystick support)
 			if s[5] == "neg" then
 				x = -x
 			end
@@ -1040,10 +1044,14 @@ function mario:updateangle()
 		s = controls[self.playernumber]["aimy"]
 		if s[1] == "joy" then
 <<<<<<< HEAD
+<<<<<<< HEAD
 			y = -love.joystick.getAxis(s[2], s[4])
 =======
 			y = -joysticks[s[2]]:getAxis(s[4])
 >>>>>>> parent of c817b67 (fix multiplayer crash if no controllers are connected)
+=======
+			y = -love.joystick.getAxis(s[2], s[4])
+>>>>>>> parent of 4d6cd0c (joystick support)
 			if s[5] == "neg" then
 				y = -y
 			end
