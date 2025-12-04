@@ -976,6 +976,7 @@ function loadconfig()
 			end
 			s3 = s2[3]:split(",")
 <<<<<<< HEAD
+<<<<<<< HEAD
 			mariocolors[tonumber(s2[2])] = {{tonumber(s3[1]), tonumber(s3[2]), tonumber(s3[3])}, {tonumber(s3[4]), tonumber(s3[5]), tonumber(s3[6])}, {tonumber(s3[7]), tonumber(s3[8]), tonumber(s3[9])}}
 =======
 			local s4 = {}
@@ -987,6 +988,9 @@ function loadconfig()
 			end
 			mariocolors[tonumber(s2[2])] = {{s4[1], s4[2], s4[3]}, {s4[4], s4[5], s4[6]}, {s4[7], s4[8], s4[9]}}
 >>>>>>> parent of 19ef11e (fix: handle color conversion edge case)
+=======
+			mariocolors[tonumber(s2[2])] = {{tonumber(s3[1]), tonumber(s3[2]), tonumber(s3[3])}, {tonumber(s3[4]), tonumber(s3[5]), tonumber(s3[6])}, {tonumber(s3[7]), tonumber(s3[8]), tonumber(s3[9])}}
+>>>>>>> parent of 53c1a51 (fix: migrate pre 11.0 player colors)
 
 		elseif s2[1] == "portalhues" then
 			if portalhues[tonumber(s2[2])] == nil then
