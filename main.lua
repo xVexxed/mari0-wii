@@ -1,7 +1,10 @@
 --[[
-	PRETTY MUCH EVERYTHING BY MAURICE GUÉGAN AND IF SOMETHING ISN'T BY ME THEN IT SHOULD BE OBVIOUS OR NOBODY CARES
+	STEAL MY SHIT AND I'LL FUCK YOU UP
+	PRETTY MUCH EVERYTHING BY MAURICE GU�GAN AND IF SOMETHING ISN'T BY ME THEN IT SHOULD BE OBVIOUS OR NOBODY CARES
 
-	Licensed under MIT. You should not have received a copy of the MIT license with this program because just google for it, cmon.
+	THIS AWESOME PIECE OF CELESTIAL AMBROSIA IS RELEASED AS NON-COMMERCIAL, SHARE ALIKE, WHATEVER. YOU MAY PRINT OUT THIS CODES AND USE IT AS WALLPAPER IN YOUR BATHROOM.
+	FOR SPECIFIC LICENSE (I know you linux users get a hard on when it comes to licenses) SEE http://creativecommons.org/licenses/by-nc-sa/3.0/
+	NOW GO AWAY (or stay and modify shit. I don't care as long as you stick to the above license.)
 ]]
 
 function love.load()
@@ -47,24 +50,6 @@ function love.load()
 	love.window.setIcon(iconimg)
 
 	love.graphics.setDefaultFilter("nearest", "nearest")
-
-	axisDeadZones = {}
-	joysticks = love.joystick.getJoysticks()
-	if #joysticks > 0 then
-		for i, v in ipairs(joysticks) do
-			axisDeadZones[i] = {}
-			for j=1, v:getAxisCount() do
-				axisDeadZones[i][j] = {}
-				axisDeadZones[i][j]["stick"] = true
-				axisDeadZones[i][j]["shoulder"] = true
-			end
-			for _, j in pairs({"leftx", "lefty", "rightx", "righty", "triggerleft", "triggerright"}) do
-				axisDeadZones[i][j] = {}
-				axisDeadZones[i][j]["stick"] = true
-				axisDeadZones[i][j]["shoulder"] = true
-			end
-		end
-	end
 
 	love.graphics.setBackgroundColor(0, 0, 0)
 
@@ -1367,61 +1352,6 @@ function love.joystickreleased(joystick, button)
 		game_joystickreleased(joystick:getID(), button)
 	end
 end
-
-function love.joystickaxis(joystick, axis, value)
-	local joysticks,found = love.joystick.getJoysticks(),false
-	for i,v in ipairs(joysticks) do
-		if v:getID() == joystick:getID() then
-			joystick,found = i,true
-			break
-		end
-	end
-
-	if found then
-		local stickmoved = false
-		local shouldermoved = false
-
-		--If this axis is a stick, get whether it just moved out of its deadzone
-		if math.abs(value) > joystickaimdeadzone and axisDeadZones[joystick][axis]["stick"] then
-			stickmoved = true
-			axisDeadZones[joystick][axis]["stick"] = false
-		elseif math.abs(value) < joystickaimdeadzone and not axisDeadZones[joystick][axis]["stick"] then
-			axisDeadZones[joystick][axis]["stick"] = true
-		end
-		--If this axis is a shoulder, get whether it just moved out of its deadzone
-		if value > 0 and axisDeadZones[joystick][axis]["shoulder"] then
-			shouldermoved = true
-			axisDeadZones[joystick][axis]["shoulder"] = false
-		elseif value < 0 and not axisDeadZones[joystick][axis]["shoulder"] then
-			axisDeadZones[joystick][axis]["shoulder"] = true
-		end
-		if gamestate == "menu" or gamestate == "options" then
-			menu_joystickaxis(joystick, axis, value, stickmoved, shouldermoved)
-		elseif gamestate == "game" then
-			game_joystickaxis(joystick, axis, value, stickmoved, shouldermoved)
-		end
-	end
-end
-function love.joystickhat(joystick, hat, direction)
-	local joysticks,found = love.joystick.getJoysticks(),false
-	for i,v in ipairs(joysticks) do
-		if v:getID() == joystick:getID() then
-			joystick,found = i,true
-			break
-		end
-	end
-
-	if found then
-		if gamestate == "menu" or gamestate == "options" then
-			menu_joystickhat(joystick, hat, direction)
-		elseif gamestate == "game" then
-			game_joystickhat(joystick, hat, direction)
-		end
-	end
-end
--- love.gamepadpressed = love.joystickpressed
--- love.gamepadreleased = love.joystickreleased
--- love.gamepadaxis = love.joystickaxis
 
 function round(num, idp) --Not by me
 	local mult = 10^(idp or 0)
